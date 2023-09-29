@@ -15,7 +15,8 @@ public class CentralDoBanco {
 		
 		System.out.println("\n========Editar Usuário========");
 		EditaConta editaConta = new EditaConta();
-		editaConta.editaContaExistente(conta);
+		editaConta.opcaoDeEditar();
+		editaConta.editaContaExistente();
 		
 		System.out.println("\n========Operações Bancárias========");
 		OperacoesBancarias operacoes = new OperacoesBancarias();
