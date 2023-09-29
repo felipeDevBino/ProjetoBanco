@@ -5,24 +5,25 @@ import java.util.Scanner;
 public class EditaConta {
 
 	Scanner scanner = new Scanner(System.in);
-	CriaConta conta = new CriaConta();
+
+	//Variáveis comparativas para editar usuário
 	protected String editarEmail = "";
 	protected String editarSenha = "";
 	protected long editarCpf = 0;
 	
-	protected void opcaoDeEditar() {
+	protected void opcaoDeEditar(CriaConta conta) {
 
 		System.out.println("Deseja editar dados do usuário? digite sim ou nao:"); String opcaoDeEditar = scanner.nextLine();
 		
 		if(opcaoDeEditar.equalsIgnoreCase("sim")) {
-			editaContaExistente();
+			editaContaExistente(conta);
 
 		}else if(opcaoDeEditar.equalsIgnoreCase("nao")) {
 			//Continua o programa normalmente para as operações bancárias
 
 		}else {
 			System.out.println("Comando inválido/caracter inválido (não use acentos)!");
-			editaContaExistente();
+			editaContaExistente(conta);
 		}
 
 	}
@@ -31,7 +32,7 @@ public class EditaConta {
 	  valores para atualizá-las corretamente, usando o email, cpf e senha de usuário para garantir o acesso
 	 * @param conta
 	*/
-	protected void editaContaExistente() {
+	protected void editaContaExistente(CriaConta conta) {
 			
 			System.out.println("\nDigite o email, senha de usuário e cpf para editá-lo:");
 			System.out.println("Digite o email:"); editarEmail = scanner.nextLine();
@@ -48,19 +49,21 @@ public class EditaConta {
 					System.out.println("Digite a senha do email do usuário:"); conta.senhaEmail = scanner.nextLine();
 					System.out.println("Digite o cpf do usuário:"); conta.cpf = Long.parseLong(scanner.nextLine());
 					System.out.println("Por fim, digite a senha do novo usuário:"); conta.novaSenha = scanner.nextLine();
-						
-					//Tratando as variáveis caso sejam sejam nulas ou não contenham conteúdo
-					TrataVariaveisNulas trataVariaveisNulas = new TrataVariaveisNulas();
-					trataVariaveisNulas.tratandoVariaveisNulas(conta);
+
+					//Chamando a função para tratar variáveis vazias
+					TrataVariaveisDeEdicao.trataVariaveisDeEdicao(conta, this);
 				
 				}catch(NumberFormatException e) { 
 					System.out.println("Tipo de caracter inválido, recomenda-se utilizar números inteiros, ex: 1, 10, 100");
-					editaContaExistente();
+					editaContaExistente(conta);
+				}finally {
+					System.out.println("Usuário editado com sucesso.");
+					conta.mostraUsuarioCriado();
 				}
 					
 			}else {
 				System.out.println("Email, Cpf ou senha de usuário incorretos ou inexistentes.");
-				editaContaExistente();
+				editaContaExistente(conta);
 			}
 				
 	  }

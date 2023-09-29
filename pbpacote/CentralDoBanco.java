@@ -11,12 +11,10 @@ public class CentralDoBanco {
 		System.out.println("========Banco Central========");
 		CriaConta conta = new CriaConta();
 		conta.criaNovoUsuario();
-		conta.mostraUsuarioCriado();
 		
 		System.out.println("\n========Editar Usuário========");
 		EditaConta editaConta = new EditaConta();
-		editaConta.opcaoDeEditar();
-		editaConta.editaContaExistente();
+		editaConta.opcaoDeEditar(conta);
 		
 		System.out.println("\n========Operações Bancárias========");
 		OperacoesBancarias operacoes = new OperacoesBancarias();

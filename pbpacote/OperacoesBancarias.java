@@ -44,7 +44,7 @@ public class OperacoesBancarias {
 			System.out.println("Programa terminado.");
 			System.exit(0);
 		}else {
-			System.out.println("Comando incorreto.");
+			System.out.println("Comando incorreto/inválido.");
 			this.realizaOperacao();
 		}
 		

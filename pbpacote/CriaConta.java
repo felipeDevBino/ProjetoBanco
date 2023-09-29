@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CriaConta {
 
 	public Scanner scanner = new Scanner(System.in);
-	
+
 	//Dados para a criação do usuário
 	protected String novoUsuario;
 	protected String novaSenha;
@@ -14,7 +14,7 @@ public class CriaConta {
 	protected int dataDeNascimento;
 	protected long cpf;
 	protected String escolha;
-	
+
 	/**
 	 * Método principal para criação de contas e definição de parâmetros essenciais como:
 	 * 
@@ -26,47 +26,27 @@ public class CriaConta {
 	 * @param senhaEmail
 	*/
 	protected void criaNovoUsuario() {
-	
+
 		try {
+
 			System.out.println("\nDigite o nome do novo usuário:"); novoUsuario = scanner.nextLine();
 			System.out.println("Digite a data de nascimento do usuário:"); dataDeNascimento = Integer.parseInt(scanner.nextLine());
 			System.out.println("Digite o email do usuário:"); novoEmail = scanner.nextLine();
 			System.out.println("Digite a senha do email:"); senhaEmail = scanner.nextLine();
 			System.out.println("Digite o cpf do usuário:"); cpf = Long.parseLong(scanner.nextLine());
 			System.out.println("Por fim, digite a senha de usuário:"); novaSenha = scanner.nextLine();
-			
-			if(novoUsuario == "") {
-				System.out.println("Nome inválido!");
-				this.criaNovoUsuario();
-				
-			}else if(dataDeNascimento == 0) {
-				System.out.println("Data de nascimento inválida!");
-				this.criaNovoUsuario();
-				
-			}else if(novoEmail == "") {
-				System.out.println("Email inválido!");
-				this.criaNovoUsuario();
-				
-			}else if(senhaEmail == "") {
-				System.out.println("Senha de email inválida!");
-				this.criaNovoUsuario();
-				
-			}else if(cpf == 0) {
-				System.out.println("Cpf inválido!");
-				this.criaNovoUsuario();
-			
-			}else if(novaSenha == "") {
-				System.out.println("Senha de usuário inválida!");
-				this.criaNovoUsuario();	
-			
-			}else {
-				System.out.println("Usuário criado com sucesso!");
-			}
-			
+	
+			//Chamando a função para tratar variáveis vazias
+			TrataVariaveisDeCriacao.trataVariaveisDeCriacao(this);
+
 		}catch(NumberFormatException e) {
 			System.out.println("Tipo de caracter inválido, recomenda-se utilizar números inteiros, ex: 1, 10, 100");
+			criaNovoUsuario();
+		}finally {	
+			System.out.println("\nUsuário criado com sucesso.\n");
+			mostraUsuarioCriado();
 		}
-		
+
 	}
 	
 	/**
@@ -94,9 +74,9 @@ public class CriaConta {
 		
 		}else {
 			System.out.println("Comando inválido/caracter inválido (não use acentos)!");
-			this.mostraUsuarioCriado();
+			mostraUsuarioCriado();
 		}
 		
 	}
-	
+
 }
