@@ -23,7 +23,7 @@ public class EditaConta {
 
 		}else {
 			System.out.println("Comando inválido/caracter inválido (não use acentos)!");
-			editaContaExistente(conta);
+			opcaoDeEditar(conta);
 		}
 
 	}
@@ -34,10 +34,17 @@ public class EditaConta {
 	*/
 	protected void editaContaExistente(CriaConta conta) {
 			
+		try {
+
 			System.out.println("\nDigite o email, senha de usuário e cpf para editá-lo:");
 			System.out.println("Digite o email:"); editarEmail = scanner.nextLine();
 			System.out.println("Digite a senha de usuário:"); editarSenha = scanner.nextLine();
 			System.out.println("Digite o cpf:"); editarCpf = Long.parseLong(scanner.nextLine());
+	
+		}catch(NumberFormatException e) {
+			System.out.println("Tipo de caracter inválido, recomenda-se utilizar números inteiros, ex: 1, 10, 100");
+			editaContaExistente(conta);
+		}
 
 			if(editarEmail.equalsIgnoreCase(conta.novoEmail) && editarSenha.equalsIgnoreCase(conta.novaSenha) && editarCpf == conta.cpf) {
 				
