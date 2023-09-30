@@ -32,14 +32,14 @@ public class OperacoesBancarias {
 		}
 
 		if(comandoDeOperacao == 1) {
-			this.realizaSaque();
-			this.realizaOperacao();
+			realizaSaque();
+			realizaOperacao();
 		}else if(comandoDeOperacao == 2) {
-			this.realizaDeposito();
-			this.realizaOperacao();
+			realizaDeposito();
+			realizaOperacao();
 		}else if(comandoDeOperacao == 3) {
-			this.consultaSaldo();
-			this.realizaOperacao();
+			consultaSaldo();
+			realizaOperacao();
 		}else if(comandoDeOperacao == 4) {
 			System.out.println("Programa terminado.");
 			System.exit(0);
@@ -74,11 +74,15 @@ public class OperacoesBancarias {
 				System.out.println("Saque realizado com sucesso.");
 			}else {
 				System.out.println("Quantia excedente, incapaz de realizar o saque.");
-				this.realizaSaque();
+				if(valorTotal > 0) {
+					realizaSaque();
+				}else {
+					realizaOperacao();
+				}
 			}
 		}catch(NumberFormatException e) {
 			System.out.println("Tipo de caracter inválido, recomenda-se utilizar números inteiros, ex: 1, 10, 100");
-			this.realizaSaque();
+			realizaSaque();
 		}
 		
 	}
@@ -96,11 +100,11 @@ public class OperacoesBancarias {
 				System.out.println("Depósito realizado com sucesso.");				
 			}else {
 				System.out.println("Quantidade inválida.");
-				this.realizaDeposito();
+				realizaDeposito();
 			}
 		}catch(NumberFormatException e) {
 			System.out.println("Tipo de caracter inválido, recomenda-se utilizar números inteiros, ex: 1, 10, 100");
-			this.realizaDeposito();
+			realizaDeposito();
 		}
 		
 	}
